@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4754AD56-3E45-4AA9-AF79-473CE3F044B8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MyFtpSoft</RootNamespace>
+    <AssemblyName>MyFtpSoft</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <SignManifests>false</SignManifests>
+    <ManifestCertificateThumbprint>F54A2AE56275F0559E7E486E6C11D85D5C243D3C</ManifestCertificateThumbprint>
+    <ManifestKeyFile>MyFtpSoft_TemporaryKey.pfx</ManifestKeyFile>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>http://localhost/MyFtpSoft/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFolderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFolderForm.Designer.cs">
+      <DependentUpon>AddFolderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoUpdateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoUpdateForm.Designer.cs">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookMarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookMarkForm.Designer.cs">
+      <DependentUpon>BookMarkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindSameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindSameForm.Designer.cs">
+      <DependentUpon>FindSameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FtpListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FtpListView.Designer.cs">
+      <DependentUpon>FtpListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFolderForm.resx">
+      <DependentUpon>AddFolderForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindSameForm.resx">
+      <DependentUpon>FindSameForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FtpListView.resx">
+      <DependentUpon>FtpListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FtpObserver.resx">
+      <DependentUpon>FtpObserver.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControlForm.resx">
+      <DependentUpon>ServerControlForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="MyFtpSoft_TemporaryKey.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="FtpObserver.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FtpObserver.Designer.cs">
+      <DependentUpon>FtpObserver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RnameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RnameForm.Designer.cs">
+      <DependentUpon>RnameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerAttrbuteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerAttrbuteForm.Designer.cs">
+      <DependentUpon>ServerAttrbuteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerControlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerControlForm.Designer.cs">
+      <DependentUpon>ServerControlForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AutoUpdateForm.resx">
+      <DependentUpon>AutoUpdateForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookMarkForm.resx">
+      <DependentUpon>BookMarkForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icons\Earth.ico" />
+    <EmbeddedResource Include="Icons\Green.ico" />
+    <EmbeddedResource Include="Icons\Red.ico" />
+    <EmbeddedResource Include="Icons\Gray.ico" />
+    <EmbeddedResource Include="Icons\Folder.ico" />
+    <EmbeddedResource Include="Icons\logo.ICO" />
+    <EmbeddedResource Include="Icons\StateCon.ico" />
+    <EmbeddedResource Include="Icons\StatueDis.ico" />
+    <EmbeddedResource Include="Icons\up2.ico" />
+    <EmbeddedResource Include="Icons\NoType.ICO" />
+    <Content Include="123.bmp" />
+    <Content Include="Data\UpdateSoft.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="logo.ico" />
+    <Content Include="Icons\AddFavicon.ico" />
+    <Content Include="Icons\App.ico" />
+    <Content Include="Icons\Assimbly.ico" />
+    <Content Include="Icons\Error.ico" />
+    <Content Include="Icons\favicon.ico" />
+    <Content Include="Icons\Removefavicon.ico" />
+    <Content Include="network_mb5ucom.png" />
+    <Content Include="synchronize.png" />
+    <Content Include="tools\folderTree.ico" />
+    <Content Include="tools\folderTreeUn.ico" />
+    <Content Include="tools\Rname.ico" />
+    <Content Include="tools\Sesrver.gif" />
+    <Content Include="tools\Update.bmp" />
+    <EmbeddedResource Include="RnameForm.resx">
+      <DependentUpon>RnameForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerAttrbuteForm.resx">
+      <DependentUpon>ServerAttrbuteForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tools\1.gif" />
+    <EmbeddedResource Include="tools\10.gif" />
+    <EmbeddedResource Include="tools\11.gif" />
+    <EmbeddedResource Include="tools\12.gif" />
+    <EmbeddedResource Include="tools\13.gif" />
+    <EmbeddedResource Include="tools\16.gif" />
+    <EmbeddedResource Include="tools\17.gif" />
+    <EmbeddedResource Include="tools\19.GIF" />
+    <EmbeddedResource Include="tools\2.gif" />
+    <EmbeddedResource Include="tools\3.gif" />
+    <EmbeddedResource Include="tools\4.gif" />
+    <EmbeddedResource Include="tools\5.gif" />
+    <EmbeddedResource Include="tools\6.gif" />
+    <EmbeddedResource Include="tools\7.gif" />
+    <EmbeddedResource Include="tools\8.gif" />
+    <EmbeddedResource Include="tools\9.gif" />
+    <EmbeddedResource Include="tools\abort.ico" />
+    <EmbeddedResource Include="tools\addFolder.ico" />
+    <EmbeddedResource Include="tools\addServer.gif" />
+    <EmbeddedResource Include="tools\BbsHelp.ico" />
+    <EmbeddedResource Include="tools\Check.ico" />
+    <EmbeddedResource Include="tools\CleanSystem.ico" />
+    <EmbeddedResource Include="tools\computer1_%28add%29_16x16.gif" />
+    <EmbeddedResource Include="tools\computer1_%28edit%29_16x16.gif" />
+    <EmbeddedResource Include="tools\copy_16x16.gif" />
+    <EmbeddedResource Include="tools\cut_16x16.gif" />
+    <EmbeddedResource Include="tools\Delete.ico" />
+    <EmbeddedResource Include="tools\DownFlag.ico" />
+    <EmbeddedResource Include="tools\downLoad.ico" />
+    <EmbeddedResource Include="tools\DisConnect.ico" />
+    <EmbeddedResource Include="tools\editeServer.gif" />
+    <EmbeddedResource Include="tools\info.ico" />
+    <EmbeddedResource Include="tools\InQueue.bmp" />
+    <EmbeddedResource Include="tools\link.ico" />
+    <EmbeddedResource Include="tools\list.ico" />
+    <EmbeddedResource Include="tools\login.ico" />
+    <EmbeddedResource Include="tools\open.ico" />
+    <EmbeddedResource Include="tools\OutQueue.bmp" />
+    <EmbeddedResource Include="tools\ServerManger.ico" />
+    <EmbeddedResource Include="tools\Setting.ico" />
+    <EmbeddedResource Include="tools\sync.ico" />
+    <EmbeddedResource Include="tools\transferDown.ico" />
+    <EmbeddedResource Include="tools\transferUp.ico" />
+    <EmbeddedResource Include="tools\UpFlag.ico" />
+    <EmbeddedResource Include="tools\Upload.ico" />
+    <EmbeddedResource Include="tools\Wait.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{C7AB76ED-79E4-4738-A9AE-F8A889AB8F07}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{A1102B33-F73C-432D-9AF8-3D3C684108D7}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyFTPHelper\MyFTPHelper.csproj">
+      <Project>{C48EC090-A811-47DB-ADFA-8EC7240F8B5A}</Project>
+      <Name>MyFTPHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

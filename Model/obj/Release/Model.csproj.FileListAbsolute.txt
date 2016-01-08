@@ -1,0 +1,15 @@
+C:\Users\taobee\Desktop\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.dll
+C:\Users\taobee\Desktop\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.pdb
+C:\Users\taobee\Desktop\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\ResolveAssemblyReference.cache
+C:\Users\taobee\Desktop\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.dll
+C:\Users\taobee\Desktop\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.pdb
+D:\Training\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.dll
+D:\Training\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.pdb
+D:\Training\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\ResolveAssemblyReference.cache
+D:\Training\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.dll
+D:\Training\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.pdb
+D:\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.dll
+D:\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\bin\Release\Model.pdb
+D:\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\ResolveAssemblyReference.cache
+D:\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.dll
+D:\MyFtpSoft\MyFtpSoft\MyFtpSoft\Model\obj\Release\Model.pdb
