@@ -11,6 +11,7 @@ using Common;
 using System.Diagnostics;
 using MyFTPHelper;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace MyFtpSoft
 {
@@ -562,12 +563,13 @@ namespace MyFtpSoft
                 target = ftpHelper1.Remotefolder;
             }
 
-            string[] items = new string[5];
+            string[] items = new string[6];
             items[0] = name;
             items[1] = fileSize;
-            items[2] = target;
-            items[3] = Guid.NewGuid().ToString();
-            items[4] = "0";
+            items[2] = "0";
+            items[3] = target;
+            items[4] = Guid.NewGuid().ToString();
+            items[5] = "0";
             ListViewItem item = new ListViewItem(items, flag);
             transferLv.Items.Add(item);
         }
@@ -663,8 +665,8 @@ namespace MyFtpSoft
             {
 
                 ListViewItem item = transferLv.Items[i];
-                string id = item.SubItems[3].Text.ToString();
-                string work = item.SubItems[4].Text.ToString();
+                string id = item.SubItems[4].Text.ToString();
+                string work = item.SubItems[5].Text.ToString();
                 if (work == "1")
                 {
                     workindex++;
@@ -688,7 +690,7 @@ namespace MyFtpSoft
                         SetSatusInfor(global::MyFtpSoft.Properties.Resources.transferUp1, "[OPERATE]   Start upload!  ...");
                         ftpHelper1.UpLoadFile(fileName, ifileSize, id);
                     }
-                    item.SubItems[4].Text = "1";
+                    item.SubItems[5].Text = "1";
                     workindex++;
                     continue;
                 }
@@ -860,8 +862,13 @@ namespace MyFtpSoft
 
                     //ftpHelper1.Hostname = cbxServer.Text.Trim();
                     //ftpHelper1.Hostname = Dns.GetHostByName(cbxServer.Text.Trim()).AddressList[0].ToString();
+                    if(!(new Regex(@"^(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})(\.(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[0-9]{1,2})){3}$").IsMatch(cbxServer.Text .Trim ())))
                     ftpHelper1.Hostname = Dns.GetHostEntry(cbxServer.Text.Trim()).AddressList[0].ToString();
+                    else
+                    {
+                        ftpHelper1.Hostname = cbxServer.Text.Trim();
 
+                    }
                     ftpHelper1.Connect();
                 }
                 else
@@ -1514,7 +1521,7 @@ namespace MyFtpSoft
                     //transferLv.Items.RemoveAt(0);
                     for (int i = 0; i < transferLv.Items.Count; i++)
                     {
-                        if (e.Workid == transferLv.Items[i].SubItems[3].Text) { transferLv.Items.RemoveAt(i); break; }
+                        if (e.Workid == transferLv.Items[i].SubItems[4].Text) { transferLv.Items.RemoveAt(i); break; }
                     }
                     if (transferLv.Items.Count > 0)
                     {
@@ -1536,7 +1543,7 @@ namespace MyFtpSoft
                     //transferLv.Items.RemoveAt(0);
                     for (int i = 0; i < transferLv.Items.Count; i++)
                     {
-                        if (e.Workid == transferLv.Items[i].SubItems[3].Text) { transferLv.Items.RemoveAt(i); break; }
+                        if (e.Workid == transferLv.Items[i].SubItems[4].Text) { transferLv.Items.RemoveAt(i); break; }
                     }
                     if (transferLv.Items.Count > 0)
                     {
@@ -1565,10 +1572,16 @@ namespace MyFtpSoft
                     }
                     break;
                 case enumFtpEventArgsTypes.FilePassProgressCommpleted:
-                    int precent = (int)(((float)e.AreadyBytes / (float)e.Totalbytes) * 100);
-                    barFileProg.Value = precent;
-                    labelPrecent.Text = precent.ToString() + "% Finished";
-                    statusBarPanelStatus.Text = "Transfer:" + e.SMessage + " Time: " + ((float)e.Timeelapsed / 1000).ToString() + " (s)  ";
+                    float  precent = (((float)e.AreadyBytes / (float)e.Totalbytes) * 100);
+                    string pro = precent.ToString("F4");
+                    //string workid = e.SMessage ;
+                    for (int i = 0; i < transferLv.Items.Count; i++)
+                    {
+                        if (e.SMessage == transferLv.Items[i].SubItems[4].Text) { transferLv.Items[i].SubItems [2].Text =pro ; break; }
+                    }
+                    //barFileProg.Value = precent;
+                    //labelPrecent.Text = precent.ToString() + "% Finished";
+                    //statusBarPanelStatus.Text = "Transfer:" + e.SMessage + " Time: " + ((float)e.Timeelapsed / 1000).ToString() + " (s)  ";
 
                     break;
                 default:

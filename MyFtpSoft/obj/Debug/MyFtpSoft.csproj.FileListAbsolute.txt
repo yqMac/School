@@ -158,3 +158,4 @@ E:\VS\work\2013\Projects\课程设计\MyFtpSoft\bin\Debug\MyFTPHelper.dll
 E:\VS\work\2013\Projects\课程设计\MyFtpSoft\bin\Debug\Common.pdb
 E:\VS\work\2013\Projects\课程设计\MyFtpSoft\bin\Debug\Model.pdb
 E:\VS\work\2013\Projects\课程设计\MyFtpSoft\bin\Debug\MyFTPHelper.pdb
+E:\VS\work\2013\Projects\课程设计\MyFtpSoft\obj\Debug\MyFtpSoft.ListViewEx.resources

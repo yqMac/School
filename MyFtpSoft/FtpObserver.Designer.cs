@@ -1,4 +1,6 @@
-﻿namespace MyFtpSoft
+﻿using System.Windows.Forms;
+
+namespace MyFtpSoft
 {
     partial class FtpObserver
     {
@@ -30,10 +32,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FtpObserver));
-            this.lvTransfer = new System.Windows.Forms.ListView();
+            this.lvTransfer = new MyFtpSoft.ListViewEx();
             this.FileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FileSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Target = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.work = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripTransfer = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearQueueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,8 +59,7 @@
             this.saveToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.clearAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.work = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.progress = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripTransfer.SuspendLayout();
             this.contextMenuStripObserve.SuspendLayout();
             this.SuspendLayout();
@@ -66,6 +69,7 @@
             this.lvTransfer.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.FileName,
             this.FileSize,
+            this.progress,
             this.Target,
             this.Id,
             this.work});
@@ -73,6 +77,10 @@
             this.lvTransfer.Dock = System.Windows.Forms.DockStyle.Left;
             this.lvTransfer.Location = new System.Drawing.Point(0, 0);
             this.lvTransfer.Name = "lvTransfer";
+            this.lvTransfer.OwnerDraw = true;
+            this.lvTransfer.ProgressColor = System.Drawing.Color.GreenYellow;
+            this.lvTransfer.ProgressColumIndex = 2;
+            this.lvTransfer.ProgressTextColor = System.Drawing.Color.MediumBlue;
             this.lvTransfer.Size = new System.Drawing.Size(575, 221);
             this.lvTransfer.SmallImageList = this.imageList1;
             this.lvTransfer.TabIndex = 0;
@@ -81,17 +89,26 @@
             // 
             // FileName
             // 
-            this.FileName.Text = "FileName";
+            this.FileName.Text = "文件名";
             this.FileName.Width = 300;
             // 
             // FileSize
             // 
-            this.FileSize.Text = "FileSize";
+            this.FileSize.Text = "大小";
             this.FileSize.Width = 100;
             // 
             // Target
             // 
-            this.Target.Text = "Target";
+            this.Target.Text = "目标";
+            // 
+            // Id
+            // 
+            this.Id.Text = "Id";
+            this.Id.Width = 99;
+            // 
+            // work
+            // 
+            this.work.Text = "work";
             // 
             // contextMenuStripTransfer
             // 
@@ -150,12 +167,14 @@
             this.moveToTopToolStripMenuItem.Name = "moveToTopToolStripMenuItem";
             this.moveToTopToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.moveToTopToolStripMenuItem.Text = "MoveToTop";
+            this.moveToTopToolStripMenuItem.Click += new System.EventHandler(this.moveToTopToolStripMenuItem_Click);
             // 
             // moveToBottonToolStripMenuItem
             // 
             this.moveToBottonToolStripMenuItem.Name = "moveToBottonToolStripMenuItem";
             this.moveToBottonToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.moveToBottonToolStripMenuItem.Text = "MoveToBotton";
+            this.moveToBottonToolStripMenuItem.Click += new System.EventHandler(this.moveToBottonToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -168,6 +187,7 @@
             this.queueInformationToolStripMenuItem.Name = "queueInformationToolStripMenuItem";
             this.queueInformationToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.queueInformationToolStripMenuItem.Text = "QueueInformation";
+            this.queueInformationToolStripMenuItem.Click += new System.EventHandler(this.queueInformationToolStripMenuItem_Click);
             // 
             // toolStripMenuItem5
             // 
@@ -179,12 +199,14 @@
             this.saveQueueToolStripMenuItem.Name = "saveQueueToolStripMenuItem";
             this.saveQueueToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.saveQueueToolStripMenuItem.Text = "SaveQueue";
+            this.saveQueueToolStripMenuItem.Click += new System.EventHandler(this.saveQueueToolStripMenuItem_Click);
             // 
             // loadQueueToolStripMenuItem
             // 
             this.loadQueueToolStripMenuItem.Name = "loadQueueToolStripMenuItem";
             this.loadQueueToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
             this.loadQueueToolStripMenuItem.Text = "LoadQueue";
+            this.loadQueueToolStripMenuItem.Click += new System.EventHandler(this.loadQueueToolStripMenuItem_Click);
             // 
             // imageList1
             // 
@@ -252,14 +274,10 @@
             this.clearAllToolStripMenuItem.Text = "ClearAll";
             this.clearAllToolStripMenuItem.Click += new System.EventHandler(this.clearAllToolStripMenuItem_Click);
             // 
-            // Id
+            // progress
             // 
-            this.Id.Text = "Id";
-            this.Id.Width = 99;
-            // 
-            // work
-            // 
-            this.work.Text = "work";
+            this.progress.Text = "进度";
+            this.progress.Width = 100;
             // 
             // FtpObserver
             // 
@@ -278,7 +296,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListView lvTransfer;
+        private ListViewEx lvTransfer;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.RichTextBox rtxtLog;
         private System.Windows.Forms.ColumnHeader FileName;
@@ -305,5 +323,6 @@
         private System.Windows.Forms.ToolStripMenuItem loadQueueToolStripMenuItem;
         private System.Windows.Forms.ColumnHeader Id;
         private System.Windows.Forms.ColumnHeader work;
+        private ColumnHeader progress;
     }
 }

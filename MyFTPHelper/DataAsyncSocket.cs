@@ -195,7 +195,7 @@ namespace MyFTPHelper
                 state.byteTransfered += byteSend;
 
                 _endTick = Environment.TickCount;
-                _ftpHandler.ShowFilePassProgress(_fileName, state.byteTransfered, _fileSize, _endTick - _startTick);
+                _ftpHandler.ShowFilePassProgress(_workid , state.byteTransfered, _fileSize, _endTick - _startTick);
                 if (state.byteTransfered >= _fileSize || byteSend <=0)
                 {
                     sock.Close();
@@ -256,10 +256,11 @@ namespace MyFTPHelper
             int byteRead = sock.EndReceive(ar);
             
             state.fs.Write(state.buffer, 0, byteRead);
+            state.fs.Flush();
             state.byteTransfered += byteRead;
 
             _endTick = Environment.TickCount;
-            _ftpHandler.ShowFilePassProgress(_fileName,state.byteTransfered, _fileSize, _endTick - _startTick);
+            _ftpHandler.ShowFilePassProgress(_workid ,state.byteTransfered, _fileSize, _endTick - _startTick);
             if (state.byteTransfered >= _fileSize || byteRead <=0)
             {
                 _endTick = Environment.TickCount;

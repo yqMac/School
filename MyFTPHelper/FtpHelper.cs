@@ -636,7 +636,7 @@ namespace MyFTPHelper
                 try
                 {
                     this.WaitSingle();
-                    Thread.Sleep(30000);
+                    Thread.Sleep(20000);
                 }
                 catch (Exception ex)
                 {

@@ -53,5 +53,30 @@ namespace MyFtpSoft
         {
             
         }
+
+        private void moveToTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void moveToBottonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void queueInformationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadQueueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
