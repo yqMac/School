@@ -116,8 +116,9 @@
             this.imageListLocalTree = new System.Windows.Forms.ImageList(this.components);
             this.imageListServerTree = new System.Windows.Forms.ImageList(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_tool_manage = new System.Windows.Forms.Button();
+            this.btn_tool_Connect = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.btn_Connect = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtUserPwd = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -128,24 +129,14 @@
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.CheckBoxAnonymous = new System.Windows.Forms.CheckBox();
             this.txtProt = new System.Windows.Forms.TextBox();
-            this.btn_refresh = new System.Windows.Forms.Button();
-            this.btn_disconnect = new System.Windows.Forms.Button();
-            this.btn_abort = new System.Windows.Forms.Button();
+            this.btn_tool_refresh = new System.Windows.Forms.Button();
+            this.btn_tool_disconnect = new System.Windows.Forms.Button();
+            this.btn_tool_abort = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonConnect = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDisConnect = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton13 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.ftpHelper1 = new MyFTPHelper.FtpHelper(this.components);
             this.ftpListViewServer = new MyFtpSoft.FtpListView();
             this.ftpListViewLocal = new MyFtpSoft.FtpListView();
             this.ftpObserver1 = new MyFtpSoft.FtpObserver();
-            this.ftpHelper1 = new MyFTPHelper.FtpHelper(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanelWelcome)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanelFileProgress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanelStatus)).BeginInit();
@@ -156,7 +147,6 @@
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusBar1
@@ -633,11 +623,11 @@
             // 
             // toolStripMenuItem20
             // 
-            this.toolStripMenuItem20.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem20.Image")));
             this.toolStripMenuItem20.Name = "toolStripMenuItem20";
             this.toolStripMenuItem20.Size = new System.Drawing.Size(124, 22);
+            this.toolStripMenuItem20.Tag = "manage";
             this.toolStripMenuItem20.Text = "站点管理";
-            this.toolStripMenuItem20.Click += new System.EventHandler(this.serversControls_Click);
+            this.toolStripMenuItem20.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
             // toolStripSeparator4
             // 
@@ -646,15 +636,14 @@
             // 
             // connectToolStripMenuItem
             // 
-            this.connectToolStripMenuItem.Image = global::MyFtpSoft.Properties.Resources.link;
             this.connectToolStripMenuItem.Name = "connectToolStripMenuItem";
             this.connectToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.connectToolStripMenuItem.Tag = "Connect";
             this.connectToolStripMenuItem.Text = "连接";
-            this.connectToolStripMenuItem.Click += new System.EventHandler(this.connect_Click);
+            this.connectToolStripMenuItem.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
             // toolStripMenuItem12
             // 
-            this.toolStripMenuItem12.Image = global::MyFtpSoft.Properties.Resources.abort;
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
             this.toolStripMenuItem12.Size = new System.Drawing.Size(124, 22);
             this.toolStripMenuItem12.Tag = "abor";
@@ -663,11 +652,11 @@
             // 
             // disConnnectToolStripMenuItem
             // 
-            this.disConnnectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("disConnnectToolStripMenuItem.Image")));
             this.disConnnectToolStripMenuItem.Name = "disConnnectToolStripMenuItem";
             this.disConnnectToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.disConnnectToolStripMenuItem.Tag = "disConnect";
             this.disConnnectToolStripMenuItem.Text = "断开连接";
-            this.disConnnectToolStripMenuItem.Click += new System.EventHandler(this.disConnect_Click);
+            this.disConnnectToolStripMenuItem.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
             // toolStripMenuItem11
             // 
@@ -678,7 +667,9 @@
             // 
             this.qiutToolStripMenuItem.Name = "qiutToolStripMenuItem";
             this.qiutToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.qiutToolStripMenuItem.Tag = "quit";
             this.qiutToolStripMenuItem.Text = "退出";
+            this.qiutToolStripMenuItem.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
             // viewToolStripMenuItem1
             // 
@@ -811,10 +802,12 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_tool_manage);
+            this.panel1.Controls.Add(this.btn_tool_Connect);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.btn_refresh);
-            this.panel1.Controls.Add(this.btn_disconnect);
-            this.panel1.Controls.Add(this.btn_abort);
+            this.panel1.Controls.Add(this.btn_tool_refresh);
+            this.panel1.Controls.Add(this.btn_tool_disconnect);
+            this.panel1.Controls.Add(this.btn_tool_abort);
             this.panel1.Controls.Add(this.toolStrip1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 25);
@@ -822,9 +815,30 @@
             this.panel1.Size = new System.Drawing.Size(1298, 85);
             this.panel1.TabIndex = 32;
             // 
+            // btn_tool_manage
+            // 
+            this.btn_tool_manage.Location = new System.Drawing.Point(309, 4);
+            this.btn_tool_manage.Name = "btn_tool_manage";
+            this.btn_tool_manage.Size = new System.Drawing.Size(58, 27);
+            this.btn_tool_manage.TabIndex = 37;
+            this.btn_tool_manage.Tag = "manage";
+            this.btn_tool_manage.Text = "管理";
+            this.btn_tool_manage.UseVisualStyleBackColor = true;
+            this.btn_tool_manage.Click += new System.EventHandler(this.toolStripButton_Click);
+            // 
+            // btn_tool_Connect
+            // 
+            this.btn_tool_Connect.Location = new System.Drawing.Point(18, 6);
+            this.btn_tool_Connect.Name = "btn_tool_Connect";
+            this.btn_tool_Connect.Size = new System.Drawing.Size(73, 23);
+            this.btn_tool_Connect.TabIndex = 36;
+            this.btn_tool_Connect.Tag = "Connect";
+            this.btn_tool_Connect.Text = "连接";
+            this.btn_tool_Connect.UseVisualStyleBackColor = true;
+            this.btn_tool_Connect.Click += new System.EventHandler(this.toolStripButton_Click);
+            // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.btn_Connect);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.txtUserPwd);
             this.panel2.Controls.Add(this.label3);
@@ -839,16 +853,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1296, 50);
             this.panel2.TabIndex = 29;
-            // 
-            // btn_Connect
-            // 
-            this.btn_Connect.Location = new System.Drawing.Point(648, 3);
-            this.btn_Connect.Name = "btn_Connect";
-            this.btn_Connect.Size = new System.Drawing.Size(73, 23);
-            this.btn_Connect.TabIndex = 35;
-            this.btn_Connect.Text = "连接";
-            this.btn_Connect.UseVisualStyleBackColor = true;
-            this.btn_Connect.Click += new System.EventHandler(this.connect_Click);
             // 
             // label2
             // 
@@ -943,53 +947,42 @@
             this.txtProt.TabIndex = 32;
             this.txtProt.Text = "21";
             // 
-            // btn_refresh
+            // btn_tool_refresh
             // 
-            this.btn_refresh.Location = new System.Drawing.Point(345, 7);
-            this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(58, 27);
-            this.btn_refresh.TabIndex = 28;
-            this.btn_refresh.Tag = "refresh";
-            this.btn_refresh.Text = "刷新";
-            this.btn_refresh.UseVisualStyleBackColor = true;
-            this.btn_refresh.Click += new System.EventHandler(this.toolStripButton_Click);
+            this.btn_tool_refresh.Location = new System.Drawing.Point(245, 2);
+            this.btn_tool_refresh.Name = "btn_tool_refresh";
+            this.btn_tool_refresh.Size = new System.Drawing.Size(58, 27);
+            this.btn_tool_refresh.TabIndex = 28;
+            this.btn_tool_refresh.Tag = "refresh";
+            this.btn_tool_refresh.Text = "刷新";
+            this.btn_tool_refresh.UseVisualStyleBackColor = true;
+            this.btn_tool_refresh.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
-            // btn_disconnect
+            // btn_tool_disconnect
             // 
-            this.btn_disconnect.Location = new System.Drawing.Point(268, 7);
-            this.btn_disconnect.Name = "btn_disconnect";
-            this.btn_disconnect.Size = new System.Drawing.Size(58, 27);
-            this.btn_disconnect.TabIndex = 27;
-            this.btn_disconnect.Tag = "disc";
-            this.btn_disconnect.Text = "断开";
-            this.btn_disconnect.UseVisualStyleBackColor = true;
-            this.btn_disconnect.Click += new System.EventHandler(this.disConnect_Click);
+            this.btn_tool_disconnect.Location = new System.Drawing.Point(181, 3);
+            this.btn_tool_disconnect.Name = "btn_tool_disconnect";
+            this.btn_tool_disconnect.Size = new System.Drawing.Size(58, 27);
+            this.btn_tool_disconnect.TabIndex = 27;
+            this.btn_tool_disconnect.Tag = "disConnect";
+            this.btn_tool_disconnect.Text = "断开";
+            this.btn_tool_disconnect.UseVisualStyleBackColor = true;
+            this.btn_tool_disconnect.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
-            // btn_abort
+            // btn_tool_abort
             // 
-            this.btn_abort.Location = new System.Drawing.Point(187, 7);
-            this.btn_abort.Name = "btn_abort";
-            this.btn_abort.Size = new System.Drawing.Size(58, 27);
-            this.btn_abort.TabIndex = 26;
-            this.btn_abort.Tag = "abor";
-            this.btn_abort.Text = "中断";
-            this.btn_abort.UseVisualStyleBackColor = true;
-            this.btn_abort.Click += new System.EventHandler(this.toolStripButton_Click);
+            this.btn_tool_abort.Location = new System.Drawing.Point(97, 2);
+            this.btn_tool_abort.Name = "btn_tool_abort";
+            this.btn_tool_abort.Size = new System.Drawing.Size(78, 27);
+            this.btn_tool_abort.TabIndex = 26;
+            this.btn_tool_abort.Tag = "abor";
+            this.btn_tool_abort.Text = "中断";
+            this.btn_tool_abort.UseVisualStyleBackColor = true;
+            this.btn_tool_abort.Click += new System.EventHandler(this.toolStripButton_Click);
             // 
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonConnect,
-            this.toolStripButton2,
-            this.toolStripButtonDisConnect,
-            this.toolStripSeparator1,
-            this.toolStripButton3,
-            this.toolStripSeparator2,
-            this.toolStripSeparator3,
-            this.toolStripButton13,
-            this.toolStripSeparator12,
-            this.toolStripButton9});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -998,88 +991,15 @@
             this.toolStrip1.TabIndex = 22;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButtonConnect
+            // ftpHelper1
             // 
-            this.toolStripButtonConnect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonConnect.Image = global::MyFtpSoft.Properties.Resources.link;
-            this.toolStripButtonConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonConnect.Name = "toolStripButtonConnect";
-            this.toolStripButtonConnect.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButtonConnect.Text = "Connect";
-            this.toolStripButtonConnect.Click += new System.EventHandler(this.connect_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::MyFtpSoft.Properties.Resources.abort;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButton2.Tag = "abor";
-            this.toolStripButton2.Text = "Abort";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton_Click);
-            // 
-            // toolStripButtonDisConnect
-            // 
-            this.toolStripButtonDisConnect.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonDisConnect.Enabled = false;
-            this.toolStripButtonDisConnect.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDisConnect.Image")));
-            this.toolStripButtonDisConnect.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonDisConnect.Name = "toolStripButtonDisConnect";
-            this.toolStripButtonDisConnect.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButtonDisConnect.Text = "DisConnect";
-            this.toolStripButtonDisConnect.Click += new System.EventHandler(this.disConnect_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButton3.Text = "ServerManger";
-            this.toolStripButton3.Click += new System.EventHandler(this.serversControls_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripButton13
-            // 
-            this.toolStripButton13.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton13.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton13.Image")));
-            this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton13.Name = "toolStripButton13";
-            this.toolStripButton13.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButton13.Tag = "execute";
-            this.toolStripButton13.Text = "ExcuteTransfer";
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 33);
-            // 
-            // toolStripButton9
-            // 
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(23, 30);
-            this.toolStripButton9.Tag = "refresh";
-            this.toolStripButton9.Text = "Refresh";
-            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton_Click);
+            this.ftpHelper1.Hostname = "";
+            this.ftpHelper1.Localfolder = "c:\\temp";
+            this.ftpHelper1.Password = "";
+            this.ftpHelper1.Port = 21;
+            this.ftpHelper1.Remotefolder = "";
+            this.ftpHelper1.Type = "A";
+            this.ftpHelper1.Username = "";
             // 
             // ftpListViewServer
             // 
@@ -1110,16 +1030,6 @@
             this.ftpObserver1.Name = "ftpObserver1";
             this.ftpObserver1.Size = new System.Drawing.Size(1301, 174);
             this.ftpObserver1.TabIndex = 9;
-            // 
-            // ftpHelper1
-            // 
-            this.ftpHelper1.Hostname = "";
-            this.ftpHelper1.Localfolder = "c:\\temp";
-            this.ftpHelper1.Password = "";
-            this.ftpHelper1.Port = 21;
-            this.ftpHelper1.Remotefolder = "";
-            this.ftpHelper1.Type = "A";
-            this.ftpHelper1.Username = "";
             // 
             // Main
             // 
@@ -1156,8 +1066,6 @@
             this.panel2.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1247,24 +1155,12 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem20;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonConnect;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonDisConnect;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton toolStripButton13;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripButton toolStripButton9;
         private FtpListView ftpListViewLocal;
         private FtpListView ftpListViewServer;
-        private System.Windows.Forms.Button btn_refresh;
-        private System.Windows.Forms.Button btn_disconnect;
-        private System.Windows.Forms.Button btn_abort;
+        private System.Windows.Forms.Button btn_tool_refresh;
+        private System.Windows.Forms.Button btn_tool_disconnect;
+        private System.Windows.Forms.Button btn_tool_abort;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button btn_Connect;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtUserPwd;
         private System.Windows.Forms.Label label3;
@@ -1280,5 +1176,8 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem15;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem16;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem17;
+        private System.Windows.Forms.Button btn_tool_Connect;
+        private System.Windows.Forms.Button btn_tool_manage;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

@@ -462,10 +462,26 @@ namespace MyFtpSoft
         #region toolbar的操作
         private void toolStripButton_Click(object sender, EventArgs e)
         {
-            Button  tsb = (Button)sender;
-            if(tsb !=null && tsb.Tag !=null)
+            string tagstr = "";
+            if(typeof(Button )==sender .GetType())
             {
-                switch (tsb.Tag .ToString ())
+                Button tmpbtn = (Button)sender;
+                tagstr = tmpbtn.Tag.ToString();
+            }else if (typeof (ToolStripButton )==sender.GetType())
+            {
+                ToolStripButton tmptsb = (ToolStripButton)sender;
+                tagstr = tmptsb.Tag.ToString();
+            }
+            else if (typeof(ToolStripMenuItem ) == sender.GetType())
+            {
+                ToolStripMenuItem tmptsb = (ToolStripMenuItem)sender;
+                tagstr = tmptsb.Tag.ToString();
+            }
+
+            //Button tsb = (Button)sender;
+            if(tagstr!="")
+            {
+                switch (tagstr)
                 {
                     case "refresh":
                         if (localLv.Focused)
@@ -483,6 +499,36 @@ namespace MyFtpSoft
                         break;
                     case "abor":
                         ftpHelper1.Abor();
+                        break;
+                    case "Connect":
+                        timer1.Enabled = true;
+                        btn_tool_disconnect.Enabled = true;
+                        btn_tool_Connect.Enabled = false;
+                        connectToolStripMenuItem.Enabled = false;
+                        disConnnectToolStripMenuItem.Enabled = true;
+                        this.Cursor = Cursors.WaitCursor;
+                        SetSatusInfor(global::MyFtpSoft.Properties.Resources.link1, "[OPERATE]   ConnetingServer Plesse Wait...");
+                        Connect();
+                        break;
+                    case "disConnect":
+                        SwitchUpDownLoad(false);
+                        timer1.Enabled = false;
+                        ServerRootFlag = false;
+                        btn_tool_disconnect.Enabled = false;
+                        btn_tool_Connect.Enabled = true;
+                        connectToolStripMenuItem.Enabled = true;
+                        disConnnectToolStripMenuItem.Enabled = false;
+                        serverLv.Items.Clear();
+                        ftpHelper1.DisConnect();
+                        ftpHelper1.ClearCommandList();
+                        SetConnetInfor(global::MyFtpSoft.Properties.Resources.StatueDis, "Welcome: anonymous   State: disConnect");
+                        break;
+                    case "manage":
+                        ServerControlForm serverControl = new ServerControlForm(this);
+                        serverControl.Show();
+                        break;
+                    case "quit":
+                        this.Close();
                         break;
                 }
             }
@@ -698,26 +744,6 @@ namespace MyFtpSoft
                
             }
             return;
-            //if (transferLv.Items.Count > 0)
-            //{
-            //    ListViewItem item = transferLv.Items[0];
-            //    string fileName = item.Text.ToString();
-            //    string sFileSize = item.SubItems[1].Text.ToString();
-            //    int ifileSize = Convert.ToInt32(sFileSize.Substring(0, sFileSize.Length - 2));
-
-            //    this.Cursor = Cursors.WaitCursor;
-            //    if (item.ImageIndex == 0) //begin downLoad
-            //    {
-            //        SetSatusInfor(global::MyFtpSoft.Properties.Resources.transferDown1, "[OPERATE]   Start download!  ...");
-            //        ftpHelper1.DowLoadFile(fileName, ifileSize);
-            //    }
-            //    else if (item.ImageIndex == 1)//begion upLoad
-            //    {
-            //        SetSatusInfor(global::MyFtpSoft.Properties.Resources.transferUp1, "[OPERATE]   Start upload!  ...");
-            //        ftpHelper1.UpLoadFile(fileName, ifileSize);
-            //    }
-
-            //}
         }
 
         /// <summary>
@@ -1083,17 +1109,7 @@ namespace MyFtpSoft
             AddFolderForm addFolderForm = new AddFolderForm(this, FolderSide.Server);
             addFolderForm.Show();
         }
-        
-        /// <summary>
-        /// 心跳包
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void timerWait_Tick(object sender, EventArgs e)
-        {
-            ftpHelper1.WaitSingle();
-        }
-        
+         
         /// <summary>
         /// 重命名
         /// </summary>
@@ -1645,55 +1661,7 @@ namespace MyFtpSoft
 
         #region ToolEvent
 
-        /// <summary>
-        /// 服务器管理
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void serversControls_Click(object sender, EventArgs e)
-        {
-            ServerControlForm serverControl = new ServerControlForm(this);
-            serverControl.Show();
-        }
 
-        /// <summary>
-        /// 断开连接
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void disConnect_Click(object sender, EventArgs e)
-        {
-            SwitchUpDownLoad(false);
-            timer1.Enabled = false;
-            ServerRootFlag = false;
-            toolStripButtonDisConnect.Enabled = false;
-            toolStripButtonConnect.Enabled = true;
-            connectToolStripMenuItem.Enabled = true;
-            disConnnectToolStripMenuItem.Enabled =false;
-            serverLv.Items.Clear();
-            ftpHelper1.DisConnect();
-            ftpHelper1.ClearCommandList();
-            SetConnetInfor(global::MyFtpSoft.Properties.Resources.StatueDis, "Welcome: anonymous   State: disConnect");
-        }
-
-
-        /// <summary>
-        /// 连接
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void connect_Click(object sender, EventArgs e)
-        {
-            timer1.Enabled = true;
-            toolStripButtonDisConnect.Enabled = true;
-            toolStripButtonConnect.Enabled = false;
-            connectToolStripMenuItem.Enabled = false;
-            disConnnectToolStripMenuItem.Enabled = true;
-            this.Cursor = Cursors.WaitCursor;
-            SetSatusInfor(global::MyFtpSoft.Properties.Resources.link1,"[OPERATE]   ConnetingServer Plesse Wait...");
-            Connect();
-            
-        }
 
        /// <summary>
        /// 本地创建文件夹
