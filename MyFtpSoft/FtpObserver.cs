@@ -32,7 +32,12 @@ namespace MyFtpSoft
 
         private void clearToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            if(rtxtLog.SelectedText =="")
+            Clipboard.SetText(rtxtLog.Text);
+            else
+            {
+                Clipboard.SetText(rtxtLog.SelectedText);
+            }
         }
 
         private void clearQueueToolStripMenuItem_Click(object sender, EventArgs e)
