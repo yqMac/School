@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AutoUpdater>
+  <description>Application autoUpdate</description>
+  <Updater>
+    <Url>http://127.0.0.1/AutoUpdate/MyFtpSoft/</Url>
+    <LastUpdateTime>2005-09-05</LastUpdateTime>
+  </Updater>
+  <Application applicationId="ItemSoft">
+    <EntryPoint>MyFtpSoft.exe</EntryPoint>
+    <Location>.</Location>
+    <Version>1.0.0.0</Version>
+  </Application>
+  <Files>
+   <File Ver="1.0.0.0" Name="bin/Release/MyFtpSoft.exe" />
+    <File Ver="1.0.0.0" Name="bin/Release/Common.dll"/>
+    <File Ver="1.0.0.0" Name="bin/Release/Model.dll"/>
+    <File Ver="1.0.0.0" Name="bin/Release/MyFTPHelper.dll"/>
+    <File Ver="1.0.0.1" Name="bin/Release/Test.txt"/>
+    <File Ver="1.0.0.1" Name="bin/Release/Test1.txt"/>
+  </Files>
+</AutoUpdater>
